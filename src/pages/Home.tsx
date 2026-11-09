@@ -41,9 +41,9 @@ function Hero() {
 
   return (
     <div className="relative">
-      <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/banner-molecule-start.jpg')} width={1920} height={800} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-        <source src={asset('images/art/v2/banner-molecule.webm')} type="video/webm" />
-        <source src={asset('images/art/v2/banner-molecule.mp4')} type="video/mp4" />
+      <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/banner-lab-start.jpg')} width={1920} height={800} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+        <source src={asset('images/art/v2/banner-lab.webm')} type="video/webm" />
+        <source src={asset('images/art/v2/banner-lab.mp4')} type="video/mp4" />
       </video>
       <button type="button" onClick={toggle} aria-label={playing ? 'Pause animation' : 'Play animation'} className="absolute bottom-2 right-2 z-10 grid size-8 place-items-center bg-black/55 text-white hover:bg-black/75">
         {playing ? <PauseIcon className="h-[12px] w-[10px]" /> : <PlayIcon className="h-[12px] w-[10px]" />}
