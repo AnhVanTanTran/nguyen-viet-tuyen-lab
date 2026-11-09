@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Footer, Header } from './components/Layout';
-import { NanoBackground } from './components/NanoBackground';
 import { site } from './data/site';
 import { topics } from './data/topics';
 import { useRoute, type Route } from './lib/router';
@@ -42,24 +41,22 @@ export default function App() {
   }, [route.path, title]);
 
   return (
-    <div className="relative isolate flex min-h-svh flex-col">
-      {/* Decorative SERS background. Lower the numbers for a quieter page, or remove this line to turn it off. */}
-      <NanoBackground intensity={route.segments.length === 0 ? 1 : 0.6} />
+    <div className="flex min-h-svh flex-col bg-white">
       <a
         href="#main"
         onClick={(e) => {
           e.preventDefault();
           main.current?.focus();
         }}
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-white focus:px-3 focus:py-2"
       >
         Skip to content
       </a>
       <Header route={route} />
-      <main id="main" ref={main} tabIndex={-1} key={route.path} className="page-enter flex-1 outline-none">
+      <main id="main" ref={main} tabIndex={-1} key={route.path} className="page-enter flex-1 pb-10 outline-none">
         {page}
       </main>
-      <Footer />
+      <Footer route={route} />
     </div>
   );
 }

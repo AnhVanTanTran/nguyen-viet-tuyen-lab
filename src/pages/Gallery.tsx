@@ -11,7 +11,6 @@ const groups: { id: NewsCategory; label: string }[] = [
   { id: 'exchange', label: 'Academic exchange' },
   { id: 'life', label: 'Lab life' },
 ];
-const grid = 'columns-2 gap-2.5 md:columns-3 lg:columns-4';
 
 function dedupe(albums: Album[]) {
   const seen = new Set<string>();
@@ -41,38 +40,39 @@ export default function Gallery() {
     };
   }, []);
 
+  const Albums = ({ albums }: { albums: Album[] }) => (
+    <>
+      {albums.map((a) => (
+        <div key={a.id}>
+          <h3 lang="vi" className="sub-title">
+            {a.title}
+          </h3>
+          <PhotoGrid photos={a.images} title={a.title} />
+        </div>
+      ))}
+    </>
+  );
+
   return (
     <>
       <PageHead title="Gallery" />
       <section className="wrap">
-        <h2 className="display text-[clamp(1.9rem,3.2vw,3rem)]">Research figures</h2>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
+        <h2 className="section-title">Group photographs</h2>
+        <Albums albums={sections.extra} />
+      </section>
+      {sections.groups.map((g) => (
+        <section key={g.id} className="wrap">
+          <h2 className="section-title">{g.label}</h2>
+          <Albums albums={g.albums} />
+        </section>
+      ))}
+      <section className="wrap">
+        <h2 className="section-title">Research figures</h2>
+        <div className="mt-2 grid items-start gap-5 lg:grid-cols-2">
           {piersFigures.map((f, i) => (
             <ScienceFigure key={f.src} figure={f} label={`PIERS research, figure ${i + 1}`} />
           ))}
         </div>
-      </section>
-      {sections.groups.map((g) => (
-        <section key={g.id} className="wrap mt-24">
-          <h2 className="display text-[clamp(1.9rem,3.2vw,3rem)]">{g.label}</h2>
-          {g.albums.map((a) => (
-            <div key={a.id} className="mt-9">
-              <h3 lang="vi" className="mb-3.5 max-w-[60ch] font-serif text-[1.14rem] leading-snug">
-                {a.title}
-              </h3>
-              <PhotoGrid photos={a.images} title={a.title} className={grid} />
-            </div>
-          ))}
-        </section>
-      ))}
-      <section className="wrap mt-24">
-        <h2 className="display text-[clamp(1.9rem,3.2vw,3rem)]">Group photographs</h2>
-        {sections.extra.map((a) => (
-          <div key={a.id} className="mt-9">
-            <h3 className="mb-3.5 font-serif text-[1.14rem]">{a.title}</h3>
-            <PhotoGrid photos={a.images} title={a.title} className={grid} />
-          </div>
-        ))}
       </section>
     </>
   );

@@ -75,6 +75,8 @@ export interface Person {
   email?: string;
   photo?: string;
   profile?: string;
+  /** Starts a new row in the Staff grid. */
+  ownRow?: boolean;
 }
 
 export interface MasterGroup {

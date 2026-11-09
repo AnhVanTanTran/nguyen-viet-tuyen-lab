@@ -42,10 +42,10 @@ export function Lightbox({
     >
       <div className="flex h-full flex-col">
         <div className="wrap flex h-16 shrink-0 items-center justify-between">
-          <p className="text-[0.9rem] text-graphite" aria-live="polite">
+          <p className="text-[14px] text-white/80" aria-live="polite">
             {many ? `${i + 1} of ${images.length}` : ''}
           </p>
-          <button type="button" autoFocus onClick={() => ref.current?.close()} className="rounded-full border border-mist px-4 py-1.5 text-[0.9rem] hover:border-graphite">
+          <button type="button" autoFocus onClick={() => ref.current?.close()} className="border border-white/40 px-4 py-1.5 text-[14px] hover:bg-white/15">
             Close
           </button>
         </div>
@@ -54,19 +54,19 @@ export function Lightbox({
             key={img.src}
             src={img.src}
             alt={img.alt}
-            className={`max-h-full max-w-full rounded-lg object-contain ${img.figure ? 'bg-white p-3' : ''}`}
+            className={`max-h-full max-w-full object-contain ${img.figure ? 'bg-white p-3' : ''}`}
           />
         </div>
         <div className="wrap flex shrink-0 flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <p lang="vi" className="max-w-[60ch] font-serif text-[1rem] leading-snug text-graphite">
+          <p lang="vi" className="max-w-[70ch] text-[14px] leading-[20px] text-white/85">
             {img.caption}
           </p>
           {many && (
             <div className="flex shrink-0 gap-2">
-              <button type="button" onClick={() => go(-1)} className="rounded-full border border-mist px-4 py-1.5 text-[0.9rem] hover:border-graphite">
+              <button type="button" onClick={() => go(-1)} className="border border-white/40 px-4 py-1.5 text-[14px] hover:bg-white/15">
                 Previous
               </button>
-              <button type="button" onClick={() => go(1)} className="rounded-full border border-mist px-4 py-1.5 text-[0.9rem] hover:border-graphite">
+              <button type="button" onClick={() => go(1)} className="border border-white/40 px-4 py-1.5 text-[14px] hover:bg-white/15">
                 Next
               </button>
             </div>

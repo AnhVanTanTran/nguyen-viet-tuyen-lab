@@ -1,151 +1,147 @@
 @import "tailwindcss";
-@import "./fonts.css";
 
+/* Design tokens, measured from the reference site chemistry.tcd.ie/cpam. */
 @theme {
-  --color-wafer: #edf0f3;
-  --color-mist: #d7dee5;
-  --color-ink: #17212b;
-  --color-graphite: #4e5b67;
-  --color-uv: #4f35c2;
-  --color-hene: #cf1f3a;
-  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --color-brand: #1074b7;
+  --color-brand-deep: #0b5c93;
+  --color-ink: #494949;
+  --color-head: #494c4f;
+  --color-card: #485361;
+  --color-muted: #6a7079;
+  --color-panel: #e2e5e9;
+  --color-band: #d3d8de;
+  --color-night: #343c3f;
+  --font-sans: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {
   html {
-    font-size: 106.25%;
-    background: var(--color-wafer);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
+    background: var(--color-night);
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 5rem;
   }
   body {
-    background: var(--color-wafer);
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
     min-width: 320px;
   }
   a {
-    text-underline-offset: 0.18em;
-    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
   :focus-visible {
-    outline: 2px solid var(--color-uv);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
   }
   sub {
-    font-size: 0.68em;
+    font-size: 0.7em;
     line-height: 0;
-  }
-  ::selection {
-    background: color-mix(in srgb, var(--color-uv) 22%, transparent);
   }
 }
 
 @layer components {
   .wrap {
-    width: 100%;
-    max-width: 88rem;
+    width: calc(100% - 32px);
+    max-width: 1180px;
     margin-inline: auto;
-    padding-inline: clamp(1rem, 4vw, 3.25rem);
   }
-  .display {
-    font-weight: 200;
-    letter-spacing: -0.022em;
-    line-height: 1.07;
+  .page-title {
+    color: var(--color-head);
+    font-size: 22.68px;
+    font-weight: 600;
+    line-height: 28.68px;
+    padding: 22.32px 0 9px;
   }
-  .prose-serif {
-    font-family: var(--font-serif);
-    font-size: 1.14rem;
-    line-height: 1.62;
-    max-width: 38em;
+  .section-title {
+    color: var(--color-head);
+    font-size: 20.16px;
+    font-weight: 600;
+    line-height: 26.16px;
+    padding: 24.84px 0 9px;
   }
-  .text-link {
-    color: var(--color-uv);
+  .sub-title {
+    color: var(--color-head);
+    font-size: 17.5px;
+    font-weight: 600;
+    line-height: 24.5px;
+    padding: 18px 0 8px;
+  }
+  .copy {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  .copy p + p {
+    margin-top: 12px;
+  }
+  .lnk {
+    color: var(--color-brand);
+  }
+  .lnk:hover {
+    color: var(--color-brand-deep);
     text-decoration: underline;
-    transition: color 0.15s;
   }
-  .text-link:hover {
-    color: var(--color-hene);
+  /* Four cards across on a computer, two on a phone. */
+  .card-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  /* The frosted panel holds scientific figures, so they always sit on a clean light ground. */
-  .glass {
-    background: rgb(255 255 255 / 0.72);
-    border: 1px solid rgb(255 255 255 / 0.9);
-    border-radius: 1.75rem;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 30px 60px -40px rgb(23 33 43 / 0.45);
+  @media (min-width: 768px) {
+    .card-grid {
+      gap: 20px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
-  .chip {
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-mist);
-    font-size: 0.86rem;
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  @media (min-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
-  .chip:hover {
-    border-color: var(--color-graphite);
+  .pill {
+    border: 1px solid var(--color-panel);
+    color: #676767;
+    font-size: 11.9px;
+    line-height: 16px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    transition: background-color 0.15s;
   }
-  .chip[aria-pressed="true"] {
-    background: var(--color-ink);
-    border-color: var(--color-ink);
-    color: var(--color-wafer);
+  .pill:hover {
+    background: var(--color-panel);
   }
-}
-
-/* Stays behind all content. Quieter on the left, where most text sits. */
-.nano-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.26), rgb(0 0 0 / 0.26) 54%, #000 88%);
-  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.26), rgb(0 0 0 / 0.26) 54%, #000 88%);
-}
-@media (max-width: 1023px) {
-  .nano-bg {
-    -webkit-mask-image: none;
-    mask-image: none;
+  .pill[aria-pressed="true"] {
+    background: var(--color-panel);
+    color: #444;
+    font-weight: 600;
   }
-}
-@media print {
-  .nano-bg { display: none; }
+  .tab {
+    border-bottom: 2px solid transparent;
+    padding: 12px 8px 6px;
+  }
+  .tab:hover {
+    color: var(--color-brand);
+  }
+  .tab[aria-pressed="true"] {
+    border-bottom-color: var(--color-brand);
+    font-weight: 600;
+  }
 }
 
 /* Route change: a short cross-fade so pages do not snap. */
 .page-enter {
-  animation: fade 0.26s ease-out;
+  animation: fade 0.2s ease-out;
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Hero: the order follows the experiment. UV first, then the probe laser, then scattering. */
-.uv-line,
-.red-line,
-.red-glow {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw var(--dur) cubic-bezier(0.55, 0, 0.15, 1) var(--delay) forwards;
+.no-scrollbar {
+  scrollbar-width: none;
 }
-.uv-line { --dur: 1s; --delay: 0.2s; }
-.red-line, .red-glow { --dur: 0.55s; --delay: 1.45s; }
-.uv-cone { opacity: 0; animation: fade 1.2s ease 0.75s forwards; }
-.beam-label { opacity: 0; animation: fade 0.7s ease var(--delay) forwards; }
-.spot { opacity: 0; animation: fade 0.2s linear 1.95s forwards; }
-.ring {
-  transform-box: fill-box;
-  transform-origin: center;
-  opacity: 0;
-  animation: ring 1.5s cubic-bezier(0.1, 0.6, 0.3, 1) var(--delay) forwards;
-}
-.au { opacity: 0; animation: fade 0.8s ease 0.1s forwards; }
-
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes ring {
-  0% { opacity: 0.75; transform: scale(0.08); }
-  100% { opacity: 0; transform: scale(1); }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 dialog.lightbox {
@@ -156,18 +152,11 @@ dialog.lightbox {
   margin: 0;
   padding: 0;
   border: 0;
-  background: rgb(237 240 243 / 0.97);
-  color: var(--color-ink);
+  background: rgb(26 30 33 / 0.97);
+  color: #fff;
 }
 dialog.lightbox[open] {
   animation: fade 0.18s ease-out;
-}
-dialog.lightbox img {
-  animation: lift 0.22s ease-out;
-}
-@keyframes lift {
-  from { opacity: 0.4; transform: scale(0.985); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -175,5 +164,6 @@ dialog.lightbox img {
     animation-duration: 0.001s !important;
     animation-delay: 0s !important;
     transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
   }
 }

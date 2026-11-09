@@ -16,7 +16,7 @@ export const topics: { id: Topic; label: string; summary: string }[] = [
     id: 'sers',
     label: 'Surface-enhanced Raman scattering substrates',
     summary:
-      'Papers on SERS substrates built from gold nanostructures, ZnO/Ag nanoflowers, CuO/Au core/shell nanowires, silver nanodendrites and TiO2@graphene.',
+      'Gold nanostructures, ZnO/Ag nanorods, CuO/Au core/shell nanowires, silver nanodendrites and TiO2/Au.',
   },
   {
     id: 'photocatalysis',
@@ -28,7 +28,7 @@ export const topics: { id: Topic; label: string; summary: string }[] = [
     id: 'fabrication',
     label: 'Nanostructure and thin-film fabrication',
     summary:
-      'Papers on CuO nanowires and nanorods, ZnO/Au nanorods, Ag-doped ZnO thin films and silicon nitride membranes.',
+      'CuO nanowires and nanorods, ZnO/Au nanorods, Ag-doped ZnO thin films and silicon nitride membranes.',
   },
   {
     id: 'optics',

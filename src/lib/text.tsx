@@ -24,7 +24,7 @@ const PI = /^(Viet Tuyen Nguyen|Nguyen Viet Tuyen|Tuyen Nguyen Viet)$/;
 export function Authors({ names }: { names: string[] }): ReactNode {
   return names.map((n, i) => (
     <span key={n + i}>
-      {PI.test(n) ? <span className="font-medium text-ink">{n}</span> : n}
+      {PI.test(n) ? <span className="font-semibold text-head">{n}</span> : n}
       {i < names.length - 1 ? ', ' : ''}
     </span>
   ));

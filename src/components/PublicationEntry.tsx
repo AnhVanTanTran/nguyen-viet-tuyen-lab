@@ -10,42 +10,49 @@ export function citation(p: Publication) {
 }
 
 export function PublicationEntry({ p }: { p: Publication }) {
+  const href = p.doi ? `https://doi.org/${p.doi}` : p.publisherUrl;
   return (
-    <article className="grid gap-5 border-t border-mist py-6 first:border-t-0 sm:grid-cols-[1fr_auto]">
+    <article className="grid gap-4 border-b border-panel py-4 last:border-b-0 sm:grid-cols-[1fr_auto]">
       <div>
-        <h3 className="text-[1.14rem] font-normal leading-snug tracking-[-0.005em]">
-          <Chem>{p.title}</Chem>
+        <h3 className="text-[15px] font-semibold leading-[21px]">
+          {href ? (
+            <a href={href} target="_blank" rel="noopener noreferrer" className="lnk">
+              <Chem>{p.title}</Chem>
+            </a>
+          ) : (
+            <span className="text-head">
+              <Chem>{p.title}</Chem>
+            </span>
+          )}
         </h3>
-        <p className="mt-2 max-w-[62ch] font-serif text-[1.02rem] leading-normal text-graphite">
+        <p className="mt-1">
           <Authors names={p.authors} />
         </p>
-        <p className="mt-1.5 font-serif text-[1.02rem]">
+        <p className="mt-1 text-[12.6px] leading-[18px] text-muted">
           {p.journal && <i>{p.journal}</i>}
           {p.journal && citation(p)}
           {p.journal && ', '}
           {p.year}
-        </p>
-        {(p.doi || p.publisherUrl || p.pdfUrl) && (
-          <p className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1 text-[0.86rem]">
-            {p.doi && (
-              <a className="text-link" href={`https://doi.org/${p.doi}`} target="_blank" rel="noopener noreferrer">
-                DOI: {p.doi}
-              </a>
-            )}
-            {p.publisherUrl && (
-              <a className="text-link" href={p.publisherUrl} target="_blank" rel="noopener noreferrer">
+          {p.doi && <> · doi: {p.doi}</>}
+          {p.publisherUrl && (
+            <>
+              {' · '}
+              <a className="lnk" href={p.publisherUrl} target="_blank" rel="noopener noreferrer">
                 {p.journal === 'arXiv preprint' ? 'arXiv page' : 'Publisher page'}
               </a>
-            )}
-            {p.pdfUrl && (
-              <a className="text-link" href={p.pdfUrl} target="_blank" rel="noopener noreferrer">
+            </>
+          )}
+          {p.pdfUrl && (
+            <>
+              {' · '}
+              <a className="lnk" href={p.pdfUrl} target="_blank" rel="noopener noreferrer">
                 PDF
               </a>
-            )}
-          </p>
-        )}
+            </>
+          )}
+        </p>
       </div>
-      {p.thumbnail && <img src={asset(p.thumbnail)} alt="" loading="lazy" className="h-28 w-auto rounded-lg bg-white object-contain p-1" />}
+      {p.thumbnail && <img src={asset(p.thumbnail)} alt="" loading="lazy" className="h-[100px] w-auto bg-white object-contain" />}
     </article>
   );
 }

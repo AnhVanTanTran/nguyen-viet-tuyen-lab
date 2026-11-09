@@ -6,7 +6,7 @@ export default function NotFound() {
     <PageHead title="Page not found">
       <p>
         This address does not match a page on the site.{' '}
-        <a className="text-link" href={link('/')}>
+        <a className="lnk" href={link('/')}>
           Go to the home page
         </a>
         .

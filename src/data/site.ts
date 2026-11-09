@@ -1,5 +1,7 @@
 export const site = {
   name: "Nguyen Viet Tuyen's Lab",
+  /** Temporary lab logo. Replace this file, or point to a new one, when the final logo is ready. */
+  logo: 'images/brand/logo-placeholder.png',
   faculty: 'Faculty of Physics',
   university: 'VNU University of Science',
   city: 'Hanoi, Vietnam',
@@ -28,6 +30,7 @@ export const site = {
 };
 
 export const nav = [
+  { label: 'Home', path: '/' },
   { label: 'Research', path: '/research' },
   { label: 'People', path: '/people' },
   { label: 'Publications', path: '/publications' },

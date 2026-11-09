@@ -20,7 +20,8 @@ export const staff: Person[] = [
   },
   {
     name: "MSc. Tran Van Tan",
-    photo: "images/people/tran-van-tan.jpg"
+    photo: "images/people/tran-van-tan.jpg",
+    ownRow: true
   }
 ];
 

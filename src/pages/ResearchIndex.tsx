@@ -1,5 +1,5 @@
+import { CircleArrow } from '../components/Icons';
 import { PageHead } from '../components/Layout';
-import { piersFigures } from '../data/gallery';
 import { piers } from '../data/piers';
 import { publications } from '../data/publications';
 import { topics } from '../data/topics';
@@ -7,38 +7,50 @@ import { asset } from '../lib/asset';
 import { link } from '../lib/router';
 import { Chem } from '../lib/text';
 
+const cards = [
+  { id: 'piers', image: 'images/art/v2/card-zno-au.jpg' },
+  { id: 'sers', image: 'images/art/v2/card-sers.jpg' },
+  { id: 'fabrication', image: 'images/art/v2/card-cuo-wires.jpg' },
+];
+
 export default function ResearchIndex() {
-  const [main, ...rest] = topics;
   const count = (id: string) => publications.filter((p) => p.topics.includes(id as never)).length;
+  const others = topics.filter((t) => t.id === 'optics');
   return (
     <>
       <PageHead title="Research">
         <p>{piers.paragraphs[0].split('. ')[0]}.</p>
       </PageHead>
       <section className="wrap">
-        <a href={link('/research/piers')} className="group grid items-center gap-8 rounded-[1.75rem] lg:grid-cols-12">
-          <div className="glass p-4 sm:p-7 lg:col-span-7">
-            <img src={asset(piersFigures[0].src)} alt={piersFigures[0].alt} width={piersFigures[0].width} height={piersFigures[0].height} className="h-auto w-full" />
-          </div>
-          <div className="lg:col-span-5">
-            <h2 className="display text-[clamp(1.9rem,3.2vw,3rem)] group-hover:text-uv">{piers.title}</h2>
-            <p className="prose-serif mt-5 text-graphite">{main.summary}</p>
-          </div>
-        </a>
-      </section>
-      <section className="wrap mt-24">
-        <h2 className="display text-[clamp(1.6rem,2.6vw,2.4rem)]">Also in the publication record</h2>
-        <ul className="mt-6">
-          {rest.map((t) => (
-            <li key={t.id} className="border-t border-mist">
-              <a href={link(`/research/${t.id}`)} className="group grid gap-2 py-6 md:grid-cols-12">
-                <span className="text-[1.3rem] font-light group-hover:text-uv md:col-span-5">{t.label}</span>
-                <span className="font-serif text-[1.08rem] text-graphite md:col-span-6">
-                  <Chem>{t.summary}</Chem>
+        <ul className="mt-2 grid gap-5 md:grid-cols-3">
+          {cards.map((c) => {
+            const t = topics.find((x) => x.id === c.id)!;
+            return (
+              <li key={c.id}>
+                <a href={link(`/research/${c.id}`)} className="group flex h-full flex-col bg-panel text-card">
+                  <img src={asset(c.image)} alt="" width={1000} height={667} loading="lazy" className="aspect-[3/2] w-full object-cover" />
+                  <span className="flex-1 p-5">
+                    <strong className="block text-[17.5px] font-normal leading-[24.5px] group-hover:underline">{t.label}</strong>
+                    <span className="block pt-[7px] leading-[19.6px]">
+                      <Chem>{t.summary}</Chem>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <ul className="mt-5 grid gap-5 md:grid-cols-3">
+          {others.map((t) => (
+            <li key={t.id}>
+              <a href={link(`/research/${t.id}`)} className="flex h-[84px] items-center justify-between gap-3 bg-panel pl-5 pr-[17px] text-[15px] leading-[21px] text-card transition-colors hover:bg-band">
+                <span>
+                  {t.label}
+                  <small className="block text-[12.6px]">
+                    {count(t.id)} {count(t.id) === 1 ? 'paper' : 'papers'}
+                  </small>
                 </span>
-                <span className="text-[0.9rem] text-graphite md:col-span-1 md:text-right">
-                  {count(t.id)} {count(t.id) === 1 ? 'paper' : 'papers'}
-                </span>
+                <CircleArrow className="size-8 shrink-0" />
               </a>
             </li>
           ))}
