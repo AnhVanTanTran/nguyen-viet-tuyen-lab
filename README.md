@@ -19,6 +19,6 @@ public/images/   research (hình khoa học), people, events, brand
 docs/            Hướng dẫn triển khai và cập nhật
 ```
 
-Giao diện lấy theo bố cục trang [CPAM, Trinity College Dublin](https://chemistry.tcd.ie/cpam/people/). Màu và cỡ chữ nằm ở `src/index.css`. Logo tạm của lab khai báo ở `logo` trong `src/data/site.ts`.
+Màu và cỡ chữ nằm ở `src/index.css`. Logo tạm của lab khai báo ở `logo` trong `src/data/site.ts`.
 
 Nội dung tách khỏi giao diện: muốn thêm bài báo hay thành viên chỉ cần sửa file trong `src/data/`.
