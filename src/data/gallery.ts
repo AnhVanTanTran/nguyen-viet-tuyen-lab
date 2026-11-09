@@ -29,12 +29,6 @@ export const extraAlbums: Album[] = [
         height: 1203
       },
       {
-        src: "images/events/teachers-day-2024/03.jpg",
-        thumb: "images/events/teachers-day-2024/thumb-03.jpg",
-        width: 1600,
-        height: 1200
-      },
-      {
         src: "images/events/group-photos/03.jpg",
         thumb: "images/events/group-photos/thumb-03.jpg",
         width: 1600,
@@ -67,12 +61,6 @@ export const extraAlbums: Album[] = [
       {
         src: "images/events/group-photos/08.jpg",
         thumb: "images/events/group-photos/thumb-08.jpg",
-        width: 1600,
-        height: 1200
-      },
-      {
-        src: "images/events/conf-2025/01.jpg",
-        thumb: "images/events/conf-2025/thumb-01.jpg",
         width: 1600,
         height: 1200
       }
@@ -176,4 +164,29 @@ export const extraAlbums: Album[] = [
       }
     ]
   }
+  ,{
+    id: "picnic",
+    title: "Lab picnic",
+    source: "Supplied by the lab",
+    images: [
+      {
+        src: "images/events/picnic/01.jpg",
+        thumb: "images/events/picnic/thumb-01.jpg",
+        width: 1200,
+        height: 1600
+      }
+    ]
+  }
+];
+
+/** Decorated collages made by the K64 class. Shown whole, on the K64 tab of the People page. */
+export const k64Memories: Album["images"] = [
+  { src: "images/events/k64-memories/01.jpg", thumb: "images/events/k64-memories/thumb-01.jpg", width: 1200, height: 1600 },
+  { src: "images/events/k64-memories/02.jpg", thumb: "images/events/k64-memories/thumb-02.jpg", width: 1600, height: 900 },
+  { src: "images/events/k64-memories/03.jpg", thumb: "images/events/k64-memories/thumb-03.jpg", width: 1600, height: 900 },
+  { src: "images/events/k64-memories/04.jpg", thumb: "images/events/k64-memories/thumb-04.jpg", width: 1200, height: 1600 },
+  { src: "images/events/k64-memories/05.jpg", thumb: "images/events/k64-memories/thumb-05.jpg", width: 1200, height: 1600 },
+  { src: "images/events/k64-memories/06.jpg", thumb: "images/events/k64-memories/thumb-06.jpg", width: 1200, height: 1600 },
+  { src: "images/events/k64-memories/07.jpg", thumb: "images/events/k64-memories/thumb-07.jpg", width: 1600, height: 900 },
+  { src: "images/events/k64-memories/08.jpg", thumb: "images/events/k64-memories/thumb-08.jpg", width: 1200, height: 1600 }
 ];

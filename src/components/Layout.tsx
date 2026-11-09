@@ -19,6 +19,7 @@ export function Header({ route }: { route: Route }) {
   };
 
   return (
+    <>
     <header>
       <div className="bg-white">
         <div className="wrap flex min-h-[84px] items-center justify-between gap-6 py-2 md:h-[100px]">
@@ -72,7 +73,9 @@ export function Header({ route }: { route: Route }) {
             {site.name}
           </a>
         </div>
-        <nav aria-label="Main" className="border-t border-white/20">
+      </div>
+    </header>
+        <nav aria-label="Main" className="sticky top-0 z-40 border-t border-white/20 bg-brand text-white shadow-[0_1px_3px_rgba(0,0,0,0.25)]">
           <div className="wrap">
             <button
               type="button"
@@ -99,8 +102,7 @@ export function Header({ route }: { route: Route }) {
             </ul>
           </div>
         </nav>
-      </div>
-    </header>
+    </>
   );
 }
 

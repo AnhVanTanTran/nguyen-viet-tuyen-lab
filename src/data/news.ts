@@ -69,6 +69,18 @@ export const news: NewsItem[] = [
         thumb: "images/events/conf-2025/thumb-07.jpg",
         width: 1440,
         height: 940
+      },
+      {
+        src: "images/events/conf-2025/08.jpg",
+        thumb: "images/events/conf-2025/thumb-08.jpg",
+        width: 1600,
+        height: 1064
+      },
+      {
+        src: "images/events/conf-2025/09.jpg",
+        thumb: "images/events/conf-2025/thumb-09.jpg",
+        width: 1600,
+        height: 1200
       }
     ],
     photoNotes: [
@@ -109,6 +121,12 @@ export const news: NewsItem[] = [
         thumb: "images/events/dong-do-2025/thumb-02.jpg",
         width: 1280,
         height: 977
+      },
+      {
+        src: "images/events/dong-do-2025/03.jpg",
+        thumb: "images/events/dong-do-2025/thumb-03.jpg",
+        width: 1600,
+        height: 1200
       }
     ],
     source: "https://sites.google.com/view/nguyenviettuyenslab/life-at-the-lab/extracurricular-activities"

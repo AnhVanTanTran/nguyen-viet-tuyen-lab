@@ -21,9 +21,9 @@ function resolve(route: Route) {
     const topic = topics.find((t) => t.id === second);
     if (topic) return { title: topic.label, page: <ResearchDetail topic={topic} /> };
   }
-  if (first === 'people') return { title: 'People', page: <People /> };
+  if (first === 'people') return { title: 'People', page: <People route={route} /> };
   if (first === 'publications') return { title: 'Publications', page: <Publications route={route} /> };
-  if (first === 'gallery') return { title: 'Gallery', page: <Gallery /> };
+  if (first === 'gallery') return { title: 'Gallery', page: <Gallery route={route} /> };
   if (first === 'news') return { title: 'News', page: <News route={route} /> };
   if (first === 'contact') return { title: 'Contact', page: <Contact /> };
   return { title: 'Page not found', page: <NotFound /> };

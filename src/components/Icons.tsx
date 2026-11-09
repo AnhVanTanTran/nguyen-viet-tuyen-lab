@@ -33,3 +33,20 @@ export function MenuIcon({ className = '' }: { className?: string }) {
     </svg>
   );
 }
+
+export function PauseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true" className={className}>
+      <rect x="1" width="3.6" height="14" />
+      <rect x="7.4" width="3.6" height="14" />
+    </svg>
+  );
+}
+
+export function PlayIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M1 0l10.5 7L1 14z" />
+    </svg>
+  );
+}

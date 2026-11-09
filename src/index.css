@@ -144,6 +144,49 @@
   display: none;
 }
 
+/* Blocks fade in once as they scroll into view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* The carousel advances when this bar finishes filling. */
+.carousel-bar {
+  animation: carousel-bar 5s linear forwards;
+  transform-origin: left;
+}
+@keyframes carousel-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* PIERS schematic: valence band, up to the conduction band, across into gold. */
+.piers-e {
+  animation: piers-e 6s ease-in-out infinite;
+}
+@keyframes piers-e {
+  0% { transform: translate(var(--x), 221px); opacity: 0; }
+  6% { transform: translate(var(--x), 221px); opacity: 1; }
+  30% { transform: translate(var(--x), 67px); opacity: 1; }
+  38% { transform: translate(var(--x), 67px); opacity: 1; }
+  64% { transform: translate(300px, 110px); opacity: 1; }
+  74% { transform: translate(330px, 122px); opacity: 0; }
+  100% { transform: translate(330px, 122px); opacity: 0; }
+}
+.piers-h {
+  animation: piers-h 6s ease-in-out infinite;
+}
+@keyframes piers-h {
+  0%, 6% { opacity: 0; }
+  30%, 80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 dialog.lightbox {
   width: 100vw;
   height: 100dvh;
@@ -159,7 +202,18 @@ dialog.lightbox[open] {
   animation: fade 0.18s ease-out;
 }
 
+@media print {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
   *, *::before, *::after {
     animation-duration: 0.001s !important;
     animation-delay: 0s !important;

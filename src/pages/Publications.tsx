@@ -7,6 +7,55 @@ import { topics } from '../data/topics';
 import { replaceQuery, type Route } from '../lib/router';
 import { fold } from '../lib/text';
 
+/** Papers per year. Each column is a button that filters the list below. */
+function YearChart({ counts, peak, year, onPick }: { counts: { year: number; n: number }[]; peak: number; year: number | null; onPick: (y: number | null) => void }) {
+  const tallest = Math.max(...counts.map((c) => c.n));
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <h2 className="text-[13px] font-semibold text-head">Papers per year</h2>
+        <button type="button" className="pill" aria-pressed={!year} onClick={() => onPick(null)}>
+          All years
+        </button>
+      </div>
+      <ul className="mt-1 flex border-b border-[#9aa3ad]" aria-label="Choose a year">
+        {counts.map(({ year: y, n }) => {
+          const on = year === y;
+          return (
+            <li key={y} className="min-w-0 flex-1">
+              <button
+                type="button"
+                disabled={n === 0}
+                aria-pressed={on}
+                aria-label={`${y}: ${n} ${n === 1 ? 'paper' : 'papers'}`}
+                onClick={() => onPick(on ? null : y)}
+                className="group flex h-[92px] w-full flex-col items-center justify-end disabled:cursor-default"
+              >
+                <span aria-hidden="true" className={`text-[12px] leading-[16px] text-card ${on || (n === tallest && !year) ? '' : 'opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100'}`}>
+                  {n}
+                </span>
+                <span
+                  aria-hidden="true"
+                  style={{ height: `${n === 0 ? 0 : Math.max(4, (n / peak) * 70)}px` }}
+                  className={`block w-[min(70%,26px)] rounded-t-[4px] transition-[height,background-color] duration-200 group-hover:bg-brand-deep ${on ? 'bg-brand-deep' : year ? 'bg-brand/35' : 'bg-brand'}`}
+                />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <ul aria-hidden="true" className="flex">
+        {counts.map(({ year: y, n }) => (
+          <li key={y} className={`min-w-0 flex-1 pt-1 text-center text-[11px] leading-[15px] ${year === y ? 'font-semibold text-head' : n === 0 ? 'text-[#a2a9b2]' : 'text-card'}`}>
+            <span className="sm:hidden">’{String(y).slice(2)}</span>
+            <span className="hidden sm:inline">{y}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Publications({ route }: { route: Route }) {
   const [year, setYear] = useState<number | null>(null);
   const [topic, setTopic] = useState<Topic | null>(null);
@@ -37,6 +86,13 @@ export default function Publications({ route }: { route: Route }) {
       (!needle || needle.split(/\s+/).every((w) => haystacks.get(p.id)!.includes(w))),
   );
   const filtering = Boolean(year || topic || needle);
+  const yearCounts = useMemo(() => {
+    const low = Math.min(...years);
+    const high = Math.max(...years);
+    const hits = publications.filter((p) => (!topic || p.topics.includes(topic)) && (!needle || needle.split(/\s+/).every((w) => haystacks.get(p.id)!.includes(w))));
+    return Array.from({ length: high - low + 1 }, (_, i) => low + i).map((y) => ({ year: y, n: hits.filter((p) => p.year === y).length }));
+  }, [years, haystacks, topic, needle]);
+  const peak = useMemo(() => Math.max(1, ...years.map((y) => publications.filter((p) => p.year === y).length)), [years]);
   const shownYears = years.filter((y) => results.some((p) => p.year === y));
   const clear = () => {
     setYear(null);
@@ -60,18 +116,9 @@ export default function Publications({ route }: { route: Route }) {
           ))}
         </div>
 
-        <div className="mt-3 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-panel">
-          <div className="flex flex-wrap" role="group" aria-label="Filter by year">
-            <button type="button" className="tab" aria-pressed={!year} onClick={() => setYear(null)}>
-              All
-            </button>
-            {years.map((y) => (
-              <button key={y} type="button" className="tab" aria-pressed={year === y} onClick={() => setYear(year === y ? null : y)}>
-                {y}
-              </button>
-            ))}
-          </div>
-          <div className="mb-2 w-full sm:w-[300px]">
+        <div className="mt-4 grid items-end gap-x-8 gap-y-4 md:grid-cols-[minmax(0,1fr)_300px]">
+          <YearChart counts={yearCounts} peak={peak} year={year} onPick={setYear} />
+          <div>
             <label htmlFor="pub-search" className="sr-only">
               Search titles, authors, journals
             </label>
