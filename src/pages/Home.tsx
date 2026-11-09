@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { CircleArrow } from '../components/Icons';
+import { useEffect, useRef, useState } from 'react';
+import { CircleArrow, PauseIcon, PlayIcon } from '../components/Icons';
 import { PhotoCarousel } from '../components/PhotoCarousel';
 import { PublicationEntry } from '../components/PublicationEntry';
 import { Reveal } from '../components/Reveal';
@@ -9,7 +9,7 @@ import { cohorts, masterStudents, staff } from '../data/people';
 import { publications } from '../data/publications';
 import { site } from '../data/site';
 import { asset } from '../lib/asset';
-import { prefersReducedMotion } from '../lib/motion';
+import { allowMotion, prefersReducedMotion } from '../lib/motion';
 import { link } from '../lib/router';
 import { formatDate } from '../lib/text';
 
@@ -21,16 +21,45 @@ const quick = [
 
 const heroClass = 'h-[220px] w-full object-cover sm:h-[300px] lg:h-[394px]';
 
-/** Banner film: a continuous red laser on a gold gap while the Raman peaks build up. */
+/** Banner film: a continuous red laser on a gold gap while scattered light builds up the Raman peaks. */
 function Hero() {
   const [still] = useState(prefersReducedMotion);
-  const poster = asset('images/art/v2/hero.jpg');
-  if (still) return <img src={poster} alt="" width={1440} height={600} className={heroClass} />;
+  const [playing, setPlaying] = useState(false);
+  const film = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = film.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => setPlaying(false));
+  }, []);
+
+  const toggle = () => {
+    if (still) {
+      allowMotion();
+      return;
+    }
+    const v = film.current;
+    if (!v) return;
+    if (v.paused) v.play().catch(() => setPlaying(false));
+    else v.pause();
+  };
+
   return (
-    <video autoPlay muted loop playsInline poster={poster} width={1440} height={600} aria-hidden="true" className={heroClass}>
-      <source src={asset('images/art/v2/hero.webm')} type="video/webm" />
-      <source src={asset('images/art/v2/hero.mp4')} type="video/mp4" />
-    </video>
+    <div className="relative">
+      {still ? (
+        <img src={asset('images/art/v2/hero.jpg')} alt="" width={1440} height={600} className={heroClass} />
+      ) : (
+        <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/hero-start.jpg')} width={1440} height={600} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+          <source src={asset('images/art/v2/banner.webm')} type="video/webm" />
+          <source src={asset('images/art/v2/banner.mp4')} type="video/mp4" />
+        </video>
+      )}
+      <button type="button" onClick={toggle} aria-label={playing ? 'Pause animation' : 'Play animation'} className="absolute bottom-2 right-2 z-10 flex h-8 items-center gap-2 bg-black/55 px-2.5 text-[12.6px] text-white hover:bg-black/75">
+        {playing ? <PauseIcon className="h-[12px] w-[10px]" /> : <PlayIcon className="h-[12px] w-[10px]" />}
+        {!playing && <span>Play animation</span>}
+      </button>
+    </div>
   );
 }
 

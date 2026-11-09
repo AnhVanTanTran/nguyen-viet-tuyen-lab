@@ -187,12 +187,15 @@ dialog.lightbox[open] {
   }
 }
 
+/* .motion-on is set when a visitor presses Play on the banner. */
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  html:not(.motion-on) .reveal {
     opacity: 1;
     transform: none;
   }
-  *, *::before, *::after {
+  html:not(.motion-on) *,
+  html:not(.motion-on) *::before,
+  html:not(.motion-on) *::after {
     animation-duration: 0.001s !important;
     animation-delay: 0s !important;
     transition-duration: 0.001s !important;
