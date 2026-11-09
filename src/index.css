@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  --color-wafer: #edf0f3;
+  --color-mist: #d7dee5;
+  --color-ink: #17212b;
+  --color-graphite: #4e5b67;
+  --color-uv: #4f35c2;
+  --color-hene: #cf1f3a;
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    font-size: 106.25%;
+    background: var(--color-wafer);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background: var(--color-wafer);
+    min-width: 320px;
+  }
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-uv);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  sub {
+    font-size: 0.68em;
+    line-height: 0;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-uv) 22%, transparent);
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.25rem);
+  }
+  .display {
+    font-weight: 200;
+    letter-spacing: -0.022em;
+    line-height: 1.07;
+  }
+  .prose-serif {
+    font-family: var(--font-serif);
+    font-size: 1.14rem;
+    line-height: 1.62;
+    max-width: 38em;
+  }
+  .text-link {
+    color: var(--color-uv);
+    text-decoration: underline;
+    transition: color 0.15s;
+  }
+  .text-link:hover {
+    color: var(--color-hene);
+  }
+  /* The frosted panel holds scientific figures, so they always sit on a clean light ground. */
+  .glass {
+    background: rgb(255 255 255 / 0.72);
+    border: 1px solid rgb(255 255 255 / 0.9);
+    border-radius: 1.75rem;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 30px 60px -40px rgb(23 33 43 / 0.45);
+  }
+  .chip {
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-mist);
+    font-size: 0.86rem;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .chip:hover {
+    border-color: var(--color-graphite);
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-wafer);
+  }
+}
+
+/* Stays behind all content. Quieter on the left, where most text sits. */
+.nano-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.26), rgb(0 0 0 / 0.26) 54%, #000 88%);
+  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.26), rgb(0 0 0 / 0.26) 54%, #000 88%);
+}
+@media (max-width: 1023px) {
+  .nano-bg {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+@media print {
+  .nano-bg { display: none; }
+}
+
+/* Route change: a short cross-fade so pages do not snap. */
+.page-enter {
+  animation: fade 0.26s ease-out;
+}
+
+/* Hero: the order follows the experiment. UV first, then the probe laser, then scattering. */
+.uv-line,
+.red-line,
+.red-glow {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw var(--dur) cubic-bezier(0.55, 0, 0.15, 1) var(--delay) forwards;
+}
+.uv-line { --dur: 1s; --delay: 0.2s; }
+.red-line, .red-glow { --dur: 0.55s; --delay: 1.45s; }
+.uv-cone { opacity: 0; animation: fade 1.2s ease 0.75s forwards; }
+.beam-label { opacity: 0; animation: fade 0.7s ease var(--delay) forwards; }
+.spot { opacity: 0; animation: fade 0.2s linear 1.95s forwards; }
+.ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: ring 1.5s cubic-bezier(0.1, 0.6, 0.3, 1) var(--delay) forwards;
+}
+.au { opacity: 0; animation: fade 0.8s ease 0.1s forwards; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ring {
+  0% { opacity: 0.75; transform: scale(0.08); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+dialog.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(237 240 243 / 0.97);
+  color: var(--color-ink);
+}
+dialog.lightbox[open] {
+  animation: fade 0.18s ease-out;
+}
+dialog.lightbox img {
+  animation: lift 0.22s ease-out;
+}
+@keyframes lift {
+  from { opacity: 0.4; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001s !important;
+  }
+}
