@@ -3,6 +3,75 @@ import type { Publication } from './types';
 
 export const publications: Publication[] = [
   {
+    id: "2026-vertically-aligned-tio2-nanorods-growth-mechanism",
+    title: "Vertically aligned TiO2 nanorods: growth mechanism and multifunctional applications for simultaneous detection and remediation of environmental pollutants",
+    authors: [
+      "Quang-Duy Dao",
+      "Nghia Nguyen Tri",
+      "Thi Thanh Hoa Nguyen",
+      "Hoa Tran Thi Quynh",
+      "Tan Tran Van",
+      "Tuyen Nguyen Viet",
+      "Hanh Hong Mai",
+      "Giang Bach Huong",
+      "Huy Nguyen Duy"
+    ],
+    journal: "Journal of Materials Science",
+    year: 2026,
+    volume: "61",
+    issue: "44",
+    pages: "34765-34778",
+    doi: "10.1007/s10853-026-13850-1",
+    publisherUrl: "https://link.springer.com/article/10.1007/s10853-026-13850-1",
+    topics: [
+      "sers",
+      "photocatalysis",
+      "fabrication"
+    ],
+    source: {
+      page: "https://link.springer.com/article/10.1007/s10853-026-13850-1",
+      listedUnderYear: 2026,
+      originalLink: "https://link.springer.com/article/10.1007/s10853-026-13850-1",
+      authorsFrom: "source",
+      metadataFrom: "source-only"
+    },
+    verification: "doi-verified"
+  },
+  {
+    id: "2026-joule-lenz-self-heating-synthesis-of-sno2-au",
+    title: "Joule-lenz Self-heating Synthesis of SnO2/Au Nanosheets for High-sensitivity Surface-enhanced Raman Scattering Applications",
+    authors: [
+      "Dai Ngoc Do",
+      "Tran Van Tan",
+      "Nguyen Van Phu",
+      "Pham Nguyen Hai",
+      "Nguyen Thi Ha Thu",
+      "Bui Thi Huyen Trang",
+      "Ngac An Bang",
+      "Tran Thi Ha",
+      "Nguyen Viet Tuyen"
+    ],
+    journal: "VNU Journal of Science: Mathematics - Physics",
+    year: 2026,
+    volume: null,
+    issue: null,
+    pages: null,
+    doi: "10.25073/2588-1124/vnumap.5162",
+    publisherUrl: "https://js.vnu.edu.vn/MaP/article/view/5162",
+    topics: [
+      "sers",
+      "fabrication"
+    ],
+    source: {
+      page: "https://js.vnu.edu.vn/MaP/article/view/5162",
+      listedUnderYear: 2026,
+      originalLink: "https://js.vnu.edu.vn/MaP/article/view/5162",
+      authorsFrom: "source",
+      metadataFrom: "source-only"
+    },
+    verification: "doi-verified"
+  },
+  {
     id: "2026-efficient-synthesis-and-growth-mechanisms-of",
     title: "Efficient synthesis and growth mechanisms of CuO nanowires via self-resistive heating",
     authors: [
