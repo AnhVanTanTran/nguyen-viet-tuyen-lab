@@ -2,8 +2,7 @@ import { Chevron } from '../components/Icons';
 import { PageHead } from '../components/Layout';
 import { PhotoGrid } from '../components/PhotoGrid';
 import { Reveal } from '../components/Reveal';
-import { ScienceFigure } from '../components/ScienceFigure';
-import { extraAlbums, piersFigures } from '../data/gallery';
+import { extraAlbums } from '../data/gallery';
 import { news } from '../data/news';
 import type { Album, NewsCategory, Photo } from '../data/types';
 import { asset } from '../lib/asset';
@@ -144,14 +143,6 @@ export default function Gallery({ route }: { route: Route }) {
           </ul>
         </Reveal>
       ))}
-      <Reveal className="wrap">
-        <h2 className="section-title">Research figures</h2>
-        <div className="mt-2 grid items-start gap-5 lg:grid-cols-2">
-          {piersFigures.map((f, i) => (
-            <ScienceFigure key={f.src} figure={f} label={`PIERS research, figure ${i + 1}`} />
-          ))}
-        </div>
-      </Reveal>
     </>
   );
 }
