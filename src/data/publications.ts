@@ -3,6 +3,108 @@ import type { Publication } from './types';
 
 export const publications: Publication[] = [
   {
+    id: "2027-synthesis-and-characterization-of-zno-ag-nanocomposites",
+    title: "Synthesis and characterization of ZnO/Ag nanocomposites for surface-enhanced Raman scattering substrates",
+    authors: [
+      "Tien Dat Tran",
+      "Thi Ha Tran",
+      "Van Tan Tran",
+      "Van Phu Nguyen",
+      "Cong Toan Nguyen",
+      "Nguyen Hai Pham",
+      "An Bang Ngac",
+      "Viet Tuyen Nguyen"
+    ],
+    journal: "Materials Science in Semiconductor Processing",
+    year: 2027,
+    volume: "218",
+    issue: null,
+    pages: "111308",
+    doi: "10.1016/j.mssp.2026.111308",
+    publisherUrl: "https://www.sciencedirect.com/science/article/pii/S1369800126009042",
+    topics: [
+      "sers",
+      "fabrication"
+    ],
+    source: {
+      page: "https://www.sciencedirect.com/science/article/pii/S1369800126009042",
+      listedUnderYear: 2027,
+      originalLink: "https://www.sciencedirect.com/science/article/pii/S1369800126009042",
+      authorsFrom: "source",
+      metadataFrom: "source-only"
+    },
+    verification: "doi-verified"
+  },
+  {
+    id: "2026-efficient-sers-on-nanocrystalline-graphitic-carbon-coated-cu",
+    title: "Efficient surface enhanced Raman scattering on nanocrystalline graphitic carbon-coated Cu nanowires prepared by low temperature chemical vapor deposition",
+    authors: [
+      "Van Tan Tran",
+      "An Bang Ngac",
+      "Nguyen Hai Pham",
+      "Viet Tuyen Nguyen",
+      "Van Chuc Nguyen",
+      "Trong Tam Nguyen",
+      "Nguyen Quoc Trinh Bui",
+      "The Nam Dinh",
+      "Thi Ha Tran"
+    ],
+    journal: "Materials Chemistry and Physics",
+    year: 2026,
+    volume: "370",
+    issue: null,
+    pages: "133102",
+    doi: "10.1016/j.matchemphys.2026.133102",
+    publisherUrl: "https://www.sciencedirect.com/science/article/pii/S0254058426010965",
+    topics: [
+      "sers",
+      "fabrication"
+    ],
+    source: {
+      page: "https://www.sciencedirect.com/science/article/pii/S0254058426010965",
+      listedUnderYear: 2026,
+      originalLink: "https://www.sciencedirect.com/science/article/pii/S0254058426010965",
+      authorsFrom: "source",
+      metadataFrom: "source-only"
+    },
+    verification: "doi-verified"
+  },
+  {
+    id: "2026-differential-pulse-voltammetry-assisted-sers-zno-au",
+    title: "Differential pulse voltammetry-assisted surface-enhanced Raman spectroscopy for ultrasensitive detection of methylene blue using ZnO/Au nanorod substrates",
+    authors: [
+      "Van Phu Nguyen",
+      "Ngoc Anh Luong",
+      "Thanh Long Nguyen",
+      "Anh Duc Tran",
+      "Van Thanh Pham",
+      "Van Tan Tran",
+      "Thi Thanh Thuy Dang",
+      "Thi Ha Tran",
+      "Nguyen Hai Pham",
+      "Quang Hoa Nguyen",
+      "Viet Tuyen Nguyen"
+    ],
+    journal: "Microchemical Journal",
+    year: 2026,
+    volume: "231",
+    issue: null,
+    pages: "119980",
+    doi: "10.1016/j.microc.2026.119980",
+    publisherUrl: "https://www.sciencedirect.com/science/article/pii/S0026265X26031851",
+    topics: [
+      "sers"
+    ],
+    source: {
+      page: "https://www.sciencedirect.com/science/article/pii/S0026265X26031851",
+      listedUnderYear: 2026,
+      originalLink: "https://www.sciencedirect.com/science/article/pii/S0026265X26031851",
+      authorsFrom: "source",
+      metadataFrom: "source-only"
+    },
+    verification: "doi-verified"
+  },
+  {
     id: "2026-vertically-aligned-tio2-nanorods-growth-mechanism",
     title: "Vertically aligned TiO2 nanorods: growth mechanism and multifunctional applications for simultaneous detection and remediation of environmental pollutants",
     authors: [
