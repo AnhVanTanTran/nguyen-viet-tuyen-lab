@@ -17,6 +17,10 @@ export const staff: Person[] = [
     name: "Assoc. Prof. Dr. Pham Nguyen Hai",
     email: "phamnguyenhai@hus.edu.vn",
     photo: "images/people/pham-nguyen-hai.jpg"
+  },
+  {
+    name: "MSc. Tran Van Tan",
+    photo: "images/people/tran-van-tan.jpg"
   }
 ];
 
@@ -24,10 +28,6 @@ export const masterStudents: MasterGroup[] = [
   {
     period: "2024–2026",
     people: [
-      {
-        name: "MSc. Trần Văn Tân",
-        photo: "images/people/tran-van-tan.jpg"
-      },
       {
         name: "Trần Tiến Đạt",
         photo: "images/people/tran-tien-dat.jpg"

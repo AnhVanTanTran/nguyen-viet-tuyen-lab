@@ -60,7 +60,7 @@ export default function People() {
     <>
       <PageHead title="People" />
       <section className="wrap">
-        <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {staff.map((p) => (
             <li key={p.name}>
               <Portrait person={p} />

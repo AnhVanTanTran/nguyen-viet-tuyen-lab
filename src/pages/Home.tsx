@@ -68,7 +68,7 @@ export default function Home() {
             Meet the team
           </a>
         </div>
-        <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-3">
+        <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {staff.map((s) => (
             <li key={s.name}>
               <img src={asset(s.photo!)} alt={s.name} width={800} height={800} loading="lazy" className="aspect-square w-full rounded-2xl object-cover" />
