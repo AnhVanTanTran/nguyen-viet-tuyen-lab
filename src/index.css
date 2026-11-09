@@ -187,15 +187,15 @@ dialog.lightbox[open] {
   }
 }
 
-/* .motion-on is set when a visitor presses Play on the banner. */
+/* The carousel bar keeps its timing because it drives the slideshow. */
 @media (prefers-reduced-motion: reduce) {
-  html:not(.motion-on) .reveal {
+  .reveal {
     opacity: 1;
     transform: none;
   }
-  html:not(.motion-on) *,
-  html:not(.motion-on) *::before,
-  html:not(.motion-on) *::after {
+  *:not(.carousel-bar),
+  *::before,
+  *::after {
     animation-duration: 0.001s !important;
     animation-delay: 0s !important;
     transition-duration: 0.001s !important;

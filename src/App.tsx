@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Footer, Header } from './components/Layout';
 import { site } from './data/site';
 import { topics } from './data/topics';
@@ -33,14 +33,6 @@ export default function App() {
   const route = useRoute();
   const main = useRef<HTMLElement>(null);
   const { title, page } = resolve(route);
-  const [motionEpoch, setMotionEpoch] = useState(0);
-
-  // Remount the page so every effect picks up a visitor's choice to allow motion.
-  useEffect(() => {
-    const bump = () => setMotionEpoch((n) => n + 1);
-    window.addEventListener('motionchange', bump);
-    return () => window.removeEventListener('motionchange', bump);
-  }, []);
 
   useEffect(() => {
     document.title = title ? `${title} | ${site.name}` : site.name;
@@ -61,7 +53,7 @@ export default function App() {
         Skip to content
       </a>
       <Header route={route} />
-      <main id="main" ref={main} tabIndex={-1} key={`${route.path}-${motionEpoch}`} className="page-enter flex-1 pb-10 outline-none">
+      <main id="main" ref={main} tabIndex={-1} key={route.path} className="page-enter flex-1 pb-10 outline-none">
         {page}
       </main>
       <Footer route={route} />

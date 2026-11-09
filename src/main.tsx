@@ -7,9 +7,6 @@ import '@fontsource/open-sans/600.css';
 import '@fontsource/open-sans/700.css';
 import App from './App';
 import './index.css';
-import { syncMotionClass } from './lib/motion';
-
-syncMotionClass();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

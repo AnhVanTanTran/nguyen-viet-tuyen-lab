@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { asset } from '../lib/asset';
-import { prefersReducedMotion } from '../lib/motion';
 
 /** A card image that plays a short muted loop while its `.group` parent is hovered or focused. `video` has no file extension. */
 export function HoverLoop({ poster, video, width, height, className }: { poster: string; video: string; width: number; height: number; className: string }) {
   const el = useRef<HTMLVideoElement>(null);
-  const [live] = useState(() => !prefersReducedMotion() && window.matchMedia('(hover: hover)').matches);
+  const [live] = useState(() => window.matchMedia('(hover: hover)').matches);
 
   useEffect(() => {
     const v = el.current;

@@ -1,7 +1,6 @@
 import { useCallback, useState, useRef } from 'react';
 import type { Photo } from '../data/types';
 import { asset } from '../lib/asset';
-import { prefersReducedMotion } from '../lib/motion';
 import { Chevron, PauseIcon, PlayIcon } from './Icons';
 import { Lightbox } from './Lightbox';
 
@@ -12,7 +11,6 @@ export function PhotoCarousel({ photos, title }: { photos: Photo[]; title: strin
   const [held, setHeld] = useState(false);
   const [paused, setPaused] = useState(false);
   const [lap, setLap] = useState(0);
-  const [auto] = useState(() => !prefersReducedMotion());
 
   const move = useCallback((dir: 1 | -1) => {
     const el = track.current;
@@ -21,9 +19,9 @@ export function PhotoCarousel({ photos, title }: { photos: Photo[]; title: strin
     let next = el.scrollLeft + dir * (el.clientWidth + 20);
     if (dir === 1 && el.scrollLeft >= end - 4) next = 0;
     if (dir === -1 && el.scrollLeft <= 4) next = end;
-    el.scrollTo({ left: next, behavior: auto ? 'smooth' : 'auto' });
+    el.scrollTo({ left: next, behavior: 'smooth' });
     setLap((n) => n + 1);
-  }, [auto]);
+  }, []);
 
   const running = !held && !paused && open === null;
   const arrow = 'absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center bg-black/55 text-white hover:bg-black/75';
@@ -54,16 +52,14 @@ export function PhotoCarousel({ photos, title }: { photos: Photo[]; title: strin
           <Chevron className="h-[16px] w-[9px]" />
         </button>
       </div>
-      {auto && (
-        <div className="mt-2 flex items-center gap-3">
-          <div aria-hidden="true" className="h-[3px] flex-1 bg-panel">
-            <div key={lap} className="carousel-bar h-full bg-brand" style={{ animationPlayState: running ? 'running' : 'paused' }} onAnimationEnd={() => move(1)} />
-          </div>
-          <button type="button" onClick={() => setPaused((v) => !v)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} className="grid size-7 place-items-center text-card hover:text-brand">
-            {paused ? <PlayIcon className="h-[12px] w-[10px]" /> : <PauseIcon className="h-[12px] w-[10px]" />}
-          </button>
+      <div className="mt-2 flex items-center gap-3">
+        <div aria-hidden="true" className="h-[3px] flex-1 bg-panel">
+          <div key={lap} className="carousel-bar h-full bg-brand" style={{ animationPlayState: running ? 'running' : 'paused' }} onAnimationEnd={() => move(1)} />
         </div>
-      )}
+        <button type="button" onClick={() => setPaused((v) => !v)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} className="grid size-7 place-items-center text-card hover:text-brand">
+          {paused ? <PlayIcon className="h-[12px] w-[10px]" /> : <PauseIcon className="h-[12px] w-[10px]" />}
+        </button>
+      </div>
       {open !== null && (
         <Lightbox images={photos.map((p) => ({ src: asset(p.src), alt: `Photo: ${title}`, caption: title }))} start={open} onClose={() => setOpen(null)} />
       )}

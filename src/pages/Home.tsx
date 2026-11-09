@@ -9,7 +9,6 @@ import { cohorts, masterStudents, staff } from '../data/people';
 import { publications } from '../data/publications';
 import { site } from '../data/site';
 import { asset } from '../lib/asset';
-import { allowMotion, prefersReducedMotion } from '../lib/motion';
 import { link } from '../lib/router';
 import { formatDate } from '../lib/text';
 
@@ -21,9 +20,8 @@ const quick = [
 
 const heroClass = 'h-[220px] w-full object-cover sm:h-[300px] lg:h-[394px]';
 
-/** Banner film: a continuous red laser on a gold gap while scattered light builds up the Raman peaks. */
+/** Banner film: a continuous laser wave enters the gold gap and Raman-shifted waves travel to the spectrum. It starts by itself. */
 function Hero() {
-  const [still] = useState(prefersReducedMotion);
   const [playing, setPlaying] = useState(false);
   const film = useRef<HTMLVideoElement>(null);
 
@@ -35,10 +33,6 @@ function Hero() {
   }, []);
 
   const toggle = () => {
-    if (still) {
-      allowMotion();
-      return;
-    }
     const v = film.current;
     if (!v) return;
     if (v.paused) v.play().catch(() => setPlaying(false));
@@ -47,17 +41,12 @@ function Hero() {
 
   return (
     <div className="relative">
-      {still ? (
-        <img src={asset('images/art/v2/hero.jpg')} alt="" width={1440} height={600} className={heroClass} />
-      ) : (
-        <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/hero-start.jpg')} width={1440} height={600} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-          <source src={asset('images/art/v2/banner.webm')} type="video/webm" />
-          <source src={asset('images/art/v2/banner.mp4')} type="video/mp4" />
-        </video>
-      )}
-      <button type="button" onClick={toggle} aria-label={playing ? 'Pause animation' : 'Play animation'} className="absolute bottom-2 right-2 z-10 flex h-8 items-center gap-2 bg-black/55 px-2.5 text-[12.6px] text-white hover:bg-black/75">
+      <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/banner-waves-start.jpg')} width={1440} height={600} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+        <source src={asset('images/art/v2/banner-waves.webm')} type="video/webm" />
+        <source src={asset('images/art/v2/banner-waves.mp4')} type="video/mp4" />
+      </video>
+      <button type="button" onClick={toggle} aria-label={playing ? 'Pause animation' : 'Play animation'} className="absolute bottom-2 right-2 z-10 grid size-8 place-items-center bg-black/55 text-white hover:bg-black/75">
         {playing ? <PauseIcon className="h-[12px] w-[10px]" /> : <PlayIcon className="h-[12px] w-[10px]" />}
-        {!playing && <span>Play animation</span>}
       </button>
     </div>
   );
