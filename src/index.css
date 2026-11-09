@@ -165,28 +165,6 @@
   to { transform: scaleX(1); }
 }
 
-/* PIERS schematic: valence band, up to the conduction band, across into gold. */
-.piers-e {
-  animation: piers-e 6s ease-in-out infinite;
-}
-@keyframes piers-e {
-  0% { transform: translate(var(--x), 221px); opacity: 0; }
-  6% { transform: translate(var(--x), 221px); opacity: 1; }
-  30% { transform: translate(var(--x), 67px); opacity: 1; }
-  38% { transform: translate(var(--x), 67px); opacity: 1; }
-  64% { transform: translate(300px, 110px); opacity: 1; }
-  74% { transform: translate(330px, 122px); opacity: 0; }
-  100% { transform: translate(330px, 122px); opacity: 0; }
-}
-.piers-h {
-  animation: piers-h 6s ease-in-out infinite;
-}
-@keyframes piers-h {
-  0%, 6% { opacity: 0; }
-  30%, 80% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 dialog.lightbox {
   width: 100vw;
   height: 100dvh;

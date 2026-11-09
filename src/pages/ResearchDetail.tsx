@@ -1,7 +1,5 @@
 import { PageHead } from '../components/Layout';
-import { PiersExplainer } from '../components/PiersExplainer';
 import { PublicationEntry } from '../components/PublicationEntry';
-import { Reveal } from '../components/Reveal';
 import { ScienceFigure } from '../components/ScienceFigure';
 import { piersFigures } from '../data/gallery';
 import { piers } from '../data/piers';
@@ -35,12 +33,6 @@ export default function ResearchDetail({ topic }: { topic: { id: Topic; label: s
             ))}
           </div>
         </section>
-      )}
-      {isPiers && (
-        <Reveal className="wrap">
-          <h2 className="section-title">How the UV step changes the signal</h2>
-          <PiersExplainer />
-        </Reveal>
       )}
       <section className="wrap">
         <h2 className="section-title">Publications</h2>
