@@ -18,9 +18,9 @@ const quick = [
   { label: 'Publications', path: '/publications' },
 ];
 
-const heroClass = 'h-[220px] w-full object-cover sm:h-[300px] lg:h-[394px]';
+const heroClass = 'h-[220px] w-full object-cover object-right sm:h-[300px] lg:h-[394px]';
 
-/** Banner film: a continuous laser wave enters the gold gap and Raman-shifted waves travel to the spectrum. It starts by itself. */
+/** Banner film: a molecule vibrates in the gold gap under a continuous laser wave while the Raman spectrum glows. It starts by itself. */
 function Hero() {
   const [playing, setPlaying] = useState(false);
   const film = useRef<HTMLVideoElement>(null);
@@ -41,9 +41,9 @@ function Hero() {
 
   return (
     <div className="relative">
-      <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/banner-waves-start.jpg')} width={1440} height={600} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-        <source src={asset('images/art/v2/banner-waves.webm')} type="video/webm" />
-        <source src={asset('images/art/v2/banner-waves.mp4')} type="video/mp4" />
+      <video ref={film} autoPlay muted loop playsInline poster={asset('images/art/v2/banner-molecule-start.jpg')} width={1920} height={800} aria-hidden="true" className={heroClass} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+        <source src={asset('images/art/v2/banner-molecule.webm')} type="video/webm" />
+        <source src={asset('images/art/v2/banner-molecule.mp4')} type="video/mp4" />
       </video>
       <button type="button" onClick={toggle} aria-label={playing ? 'Pause animation' : 'Play animation'} className="absolute bottom-2 right-2 z-10 grid size-8 place-items-center bg-black/55 text-white hover:bg-black/75">
         {playing ? <PauseIcon className="h-[12px] w-[10px]" /> : <PlayIcon className="h-[12px] w-[10px]" />}
