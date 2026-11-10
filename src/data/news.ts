@@ -3,6 +3,27 @@ import type { NewsItem } from './types';
 
 export const news: NewsItem[] = [
   {
+    id: "teachers-day-2025-k64",
+    category: "life",
+    year: 2025,
+    date: "2025-11-20",
+    title: "K64 gửi lời chúc ngày Nhà giáo Việt Nam 20/11/2025",
+    paragraphs: [
+      "“Chào thầy cô, chúng em là K64 thân yêu của thầy cô đây!” Nhân ngày Nhà giáo Việt Nam 20/11/2025, các thành viên khoá K64 gửi tới các thầy cô trong Lab một video chúc mừng.",
+      "Video mở đầu bằng cảnh các bạn cùng chuẩn bị món quà khi mọi người còn ở Việt Nam và ở 109T1, sau đó là lời chúc của từng thành viên."
+    ],
+    images: [],
+    video: {
+      src: "videos/k64-teachers-day-2025.mp4",
+      poster: "images/events/teachers-day-2025/video-poster.jpg",
+      thumb: "images/events/teachers-day-2025/thumb-video.jpg",
+      width: 854,
+      height: 480,
+      duration: "3:02"
+    },
+    source: "Supplied by the lab"
+  },
+  {
     id: "conf-2025",
     category: "research",
     year: 2025,

@@ -46,6 +46,16 @@ export interface ResearchFigure {
 
 export type NewsCategory = 'research' | 'exchange' | 'life';
 
+/** A video kept in public/videos. It plays only when the visitor presses play, with sound. */
+export interface NewsVideo {
+  src: string;
+  poster: string;
+  thumb: string;
+  width: number;
+  height: number;
+  /** m:ss */
+  duration: string;
+}
 export interface NewsItem {
   id: string;
   category: NewsCategory;
@@ -58,6 +68,7 @@ export interface NewsItem {
   /** Captions from the source carousel. They describe the album, not one specific photo. */
   photoNotes?: string[];
   links?: { label: string; url: string }[];
+  video?: NewsVideo;
   source: string;
 }
 

@@ -61,7 +61,7 @@ const stats = [
 
 export default function Home() {
   const featured = publications.filter((p) => p.featured);
-  const latest = news.filter((n) => n.images.length > 0).slice(0, 6);
+  const latest = news.filter((n) => n.images.length > 0 || n.video).slice(0, 6);
   const group = extraAlbums[0];
   const slides = [...group.images, ...extraAlbums[1].images.filter((p) => /k64-class\/1[0-3]\.jpg$/.test(p.src))];
   return (
@@ -109,8 +109,15 @@ export default function Home() {
             return (
               <li key={n.id}>
                 <a href={link(`/news?item=${n.id}`)} className="group flex gap-4 md:gap-5">
-                  <span className="block h-[75px] w-[120px] shrink-0 overflow-hidden md:h-[100px] md:w-[160px]">
-                    <img src={asset(n.images[0].thumb)} alt="" width={160} height={100} loading="lazy" className="size-full bg-panel object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  <span className="relative block h-[75px] w-[120px] shrink-0 overflow-hidden md:h-[100px] md:w-[160px]">
+                    <img src={asset(n.video ? n.video.thumb : n.images[0].thumb)} alt="" width={160} height={100} loading="lazy" className="size-full bg-panel object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                    {n.video && (
+                      <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
+                        <span className="grid size-8 place-items-center rounded-full bg-black/60 pl-0.5 text-white">
+                          <PlayIcon className="h-[12px] w-[10px]" />
+                        </span>
+                      </span>
+                    )}
                   </span>
                   <span className="min-w-0">
                     <strong lang="vi" className="block font-normal text-brand group-hover:underline">

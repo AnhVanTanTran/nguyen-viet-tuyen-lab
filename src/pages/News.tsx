@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { PageHead } from '../components/Layout';
 import { Lightbox } from '../components/Lightbox';
+import { PlayIcon } from '../components/Icons';
+import { NewsVideoPlayer } from '../components/NewsVideoPlayer';
 import { PhotoGrid } from '../components/PhotoGrid';
 import { news } from '../data/news';
 import { site } from '../data/site';
@@ -14,11 +16,18 @@ const thumbBox = 'h-[75px] w-[120px] shrink-0 md:h-[100px] md:w-[160px]';
 
 function Article({ n, label, startOpen }: { n: NewsItem; label: string; startOpen: boolean }) {
   const [zoom, setZoom] = useState(false);
+  const [open, setOpen] = useState(startOpen);
+  useEffect(() => setOpen(startOpen), [startOpen]);
   const summary = n.paragraphs.find((p) => p !== n.title);
-  const hasMore = n.paragraphs.length > 0 || n.images.length > 1 || Boolean(n.links?.length) || Boolean(n.photoNotes?.length);
+  const hasMore = n.paragraphs.length > 0 || n.images.length > 1 || Boolean(n.links?.length) || Boolean(n.photoNotes?.length) || Boolean(n.video);
   return (
     <article id={n.id} className="flex gap-4 scroll-mt-16 border-b border-panel py-4 md:gap-5">
-      {n.images.length > 0 ? (
+      {n.video ? (
+        <button type="button" onClick={() => setOpen(true)} className={`${thumbBox} relative`} aria-label={`Show video: ${n.title}`}>
+          <img src={asset(n.video.thumb)} alt="" width={160} height={90} loading="lazy" className="size-full bg-panel object-cover" />
+          <PlayBadge />
+        </button>
+      ) : n.images.length > 0 ? (
         <button type="button" onClick={() => setZoom(true)} className={`${thumbBox} cursor-zoom-in`} aria-label={`Open photo: ${n.title}`}>
           <img src={asset(n.images[0].thumb)} alt="" width={160} height={100} loading="lazy" className="size-full bg-panel object-cover" />
         </button>
@@ -40,10 +49,12 @@ function Article({ n, label, startOpen }: { n: NewsItem; label: string; startOpe
           {label}
           {n.date ? `, ${formatDate(n.date)}` : `, ${n.year}`}
           {n.images.length > 1 && ` · ${n.images.length} photos`}
+          {n.video && ` · Video ${n.video.duration}`}
         </p>
         {hasMore && (
-          <details className="mt-1.5" open={startOpen}>
-            <summary className="lnk cursor-pointer text-[12.6px]">Read more</summary>
+          <details className="mt-1.5" open={open} onToggle={(e) => setOpen(e.currentTarget.open)}>
+            <summary className="lnk cursor-pointer text-[12.6px]">{n.video ? 'Watch the video' : 'Read more'}</summary>
+            {n.video && open && <NewsVideoPlayer video={n.video} title={n.title} className="mt-3 max-w-[820px]" />}
             {n.paragraphs.length > 0 && (
               <div lang="vi" className="copy mt-3 max-w-[820px]">
                 {n.paragraphs.map((p, i) => (
@@ -74,15 +85,29 @@ function Article({ n, label, startOpen }: { n: NewsItem; label: string; startOpe
   );
 }
 
-/** The newest story with photographs, shown large above the list. */
+function PlayBadge() {
+  return (
+    <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
+      <span className="grid size-9 place-items-center rounded-full bg-black/60 pl-0.5 text-white">
+        <PlayIcon className="h-[13px] w-[11px]" />
+      </span>
+    </span>
+  );
+}
+
+/** The newest story with photographs or a video, shown large above the list. */
 function Featured({ n, label }: { n: NewsItem; label: string }) {
   const [zoom, setZoom] = useState(false);
   const summary = n.paragraphs.find((p) => p !== n.title && p.length > 60);
   return (
     <article className="mt-4 grid bg-panel text-card lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
-      <button type="button" onClick={() => setZoom(true)} className="block cursor-zoom-in overflow-hidden" aria-label={`Open photos: ${n.title}`}>
-        <img src={asset(n.images[0].src)} alt="" width={n.images[0].width} height={n.images[0].height} className="aspect-[16/10] w-full object-cover" />
-      </button>
+      {n.video ? (
+        <NewsVideoPlayer video={n.video} title={n.title} className="self-center" />
+      ) : (
+        <button type="button" onClick={() => setZoom(true)} className="block cursor-zoom-in overflow-hidden" aria-label={`Open photos: ${n.title}`}>
+          <img src={asset(n.images[0].src)} alt="" width={n.images[0].width} height={n.images[0].height} className="aspect-[16/10] w-full object-cover" />
+        </button>
+      )}
       <div className="flex flex-col p-5 lg:p-7">
         <p className="text-[12.6px] leading-[18px]">
           {label}
@@ -100,9 +125,12 @@ function Featured({ n, label }: { n: NewsItem; label: string }) {
           <a className="lnk" href={link(`/news?item=${n.id}`)}>
             Read more
           </a>
-          <a className="lnk" href={link(`/gallery/${n.id}`)}>
-            {n.images.length} photos
-          </a>
+          {n.images.length > 0 && (
+            <a className="lnk" href={link(`/gallery/${n.id}`)}>
+              {n.images.length} photos
+            </a>
+          )}
+          {n.video && <span>Video, {n.video.duration}</span>}
         </p>
       </div>
       {zoom && <Lightbox images={n.images.map((p) => ({ src: asset(p.src), alt: `Photo: ${n.title}`, caption: n.title }))} start={0} onClose={() => setZoom(false)} />}
@@ -121,7 +149,7 @@ export default function News({ route }: { route: Route }) {
     return () => window.clearTimeout(timer);
   }, [item]);
 
-  const lead = !cat && !item ? news.find((n) => n.images.length > 0) : undefined;
+  const lead = !cat && !item ? news.find((n) => n.images.length > 0 || n.video) : undefined;
   const items = news.filter((n) => (!cat || n.category === cat) && n !== lead);
   const years = [...new Set(items.map((n) => n.year))].sort((a, b) => b - a);
   const label = (id: NewsCategory) => newsCategories.find((c) => c.id === id)!.label;
