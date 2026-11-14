@@ -92,7 +92,7 @@ function AlbumPage({ a }: { a: Entry }) {
             </>
           )}
         </p>
-        <PhotoGrid photos={a.images} title={a.title} />
+        <PhotoGrid photos={a.images} title={a.title} whole />
         <nav aria-label="Other albums" className="mt-6 grid gap-3 border-t border-panel pt-4 md:grid-cols-2 md:gap-5">
           {prev ? (
             <a lang="vi" className="lnk line-clamp-2" href={link(`/gallery/${prev.id}`)}>
