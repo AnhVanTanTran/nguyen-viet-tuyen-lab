@@ -176,6 +176,19 @@ export const extraAlbums: Album[] = [
         height: 1600
       }
     ]
+  },
+  {
+    id: "physics-70",
+    title: "Faculty of Physics 70th anniversary (1956–2026)",
+    source: "Supplied by the lab",
+    images: [
+      {
+        src: "images/events/physics-70/01.jpg",
+        thumb: "images/events/physics-70/thumb-01.jpg",
+        width: 1200,
+        height: 1600
+      }
+    ]
   }
 ];
 
