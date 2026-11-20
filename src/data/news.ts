@@ -9,8 +9,8 @@ export const news: NewsItem[] = [
     date: "2026-11-20",
     title: "Chúc mừng ngày Nhà giáo Việt Nam 20/11/2026",
     paragraphs: [
-      "Nhân ngày Nhà giáo Việt Nam 20/11/2026, các thành viên Lab cùng chụp ảnh kỷ niệm với hoa chúc mừng thầy cô, trong phòng có tấm bảng “Chào mừng ngày Nhà giáo” và ngoài sân trường.",
-      "Năm nay Trường Đại học Khoa học Tự nhiên cũng kỷ niệm 70 năm truyền thống. Ảnh chụp chung trước sảnh Trường có băng rôn “70 năm truyền thống” ở hai bên."
+      "Nhân ngày Nhà giáo Việt Nam 20/11/2026, các sinh viên và học viên cao học của Lab xin gửi lời chúc sức khoẻ, hạnh phúc cùng lòng biết ơn sâu sắc đến các thầy cô giáo.",
+      "Năm nay còn là dịp đặc biệt: Khoa Vật lý kỷ niệm 70 năm thành lập và Trường Đại học Khoa học Tự nhiên kỷ niệm 70 năm truyền thống (1956–2026)."
     ],
     images: [
       {
