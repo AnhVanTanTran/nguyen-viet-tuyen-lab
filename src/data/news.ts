@@ -3,6 +3,44 @@ import type { NewsItem } from './types';
 
 export const news: NewsItem[] = [
   {
+    id: "teachers-day-2026",
+    category: "life",
+    year: 2026,
+    date: "2026-11-20",
+    title: "Chúc mừng ngày Nhà giáo Việt Nam 20/11/2026",
+    paragraphs: [
+      "Nhân ngày Nhà giáo Việt Nam 20/11/2026, các thành viên Lab cùng chụp ảnh kỷ niệm với hoa chúc mừng thầy cô, trong phòng có tấm bảng “Chào mừng ngày Nhà giáo” và ngoài sân trường.",
+      "Năm nay Trường Đại học Khoa học Tự nhiên cũng kỷ niệm 70 năm truyền thống. Ảnh chụp chung trước sảnh Trường có băng rôn “70 năm truyền thống” ở hai bên."
+    ],
+    images: [
+      {
+        src: "images/events/teachers-day-2026/01.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-01.jpg",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "images/events/teachers-day-2026/02.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-02.jpg",
+        width: 1276,
+        height: 956
+      },
+      {
+        src: "images/events/teachers-day-2026/03.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-03.jpg",
+        width: 1276,
+        height: 956
+      },
+      {
+        src: "images/events/teachers-day-2026/04.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-04.jpg",
+        width: 1276,
+        height: 956
+      }
+    ],
+    source: "Supplied by the lab"
+  },
+  {
     id: "teachers-day-2025-k64",
     category: "life",
     year: 2025,
