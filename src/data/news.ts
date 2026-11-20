@@ -36,6 +36,54 @@ export const news: NewsItem[] = [
         thumb: "images/events/teachers-day-2026/thumb-04.jpg",
         width: 1276,
         height: 956
+      },
+      {
+        src: "images/events/teachers-day-2026/05.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-05.jpg",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "images/events/teachers-day-2026/06.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-06.jpg",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "images/events/teachers-day-2026/07.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-07.jpg",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "images/events/teachers-day-2026/08.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-08.jpg",
+        width: 1200,
+        height: 1600
+      },
+      {
+        src: "images/events/teachers-day-2026/09.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-09.jpg",
+        width: 1200,
+        height: 1600
+      },
+      {
+        src: "images/events/teachers-day-2026/10.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-10.jpg",
+        width: 1200,
+        height: 1600
+      },
+      {
+        src: "images/events/teachers-day-2026/11.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-11.jpg",
+        width: 1200,
+        height: 1600
+      },
+      {
+        src: "images/events/teachers-day-2026/12.jpg",
+        thumb: "images/events/teachers-day-2026/thumb-12.jpg",
+        width: 1200,
+        height: 1600
       }
     ],
     source: "Supplied by the lab"
