@@ -154,7 +154,7 @@ export const cohorts: Cohort[] = [
     people: [
       {
         name: "Trần Văn Tân",
-        photo: "images/people/tran-van-tan.jpg"
+        photo: "images/people/tran-van-tan-k64.jpg"
       },
       {
         name: "Bùi Thị Huyền Trang",
